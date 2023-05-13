@@ -6,7 +6,7 @@
 /*   By: lupin <lupin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:03:45 by arurangi          #+#    #+#             */
-/*   Updated: 2023/05/13 13:27:44 by lupin            ###   ########.fr       */
+/*   Updated: 2023/05/13 13:29:13 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,6 @@ function castAllRays() {
 	//for (var i = 0; i < 1; i++) {
 	for (var i = 0; i < NUM_RAYS; i++) {
 		var ray = new Ray(rayAngle);
-		// TODO: ray.cast()
 		rays.push(ray);
 		rayAngle += FOV_ANGLE / NUM_RAYS;
 
