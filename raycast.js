@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.js                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arurangi <arurangi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lupin <lupin@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:03:45 by arurangi          #+#    #+#             */
-/*   Updated: 2023/05/12 16:02:55 by arurangi         ###   ########.fr       */
+/*   Updated: 2023/05/13 13:27:44 by lupin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ class Player {
 	constructor() {
 		this.x = WINDOW_WIDTH / 2;
 		this.y = WINDOW_HEIGHT / 2;
-		this.radius = TILE_SIZE / 4;
+		this.radius = TILE_SIZE / 7;
 		this.turnDirection = 0; // -1 if left, +1 if right
 		this.walkDirection = 0; // -1 if back, +1 if front
 		this.rotationAngle = Math.PI / 2;
@@ -170,8 +170,8 @@ function castAllRays() {
 	rays = [];
 
 	// loop all columns casting the rays
-	// for (var i = 0; i < NUM_RAYS; i++) {
-		for (var i = 0; i < 1; i++) {
+	//for (var i = 0; i < 1; i++) {
+	for (var i = 0; i < NUM_RAYS; i++) {
 		var ray = new Ray(rayAngle);
 		// TODO: ray.cast()
 		rays.push(ray);
