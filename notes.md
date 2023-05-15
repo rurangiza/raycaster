@@ -7,3 +7,6 @@
 - Rendering Walls
 
 # notes
+
+
+tan(θ) = opposite/adjacent
