@@ -40,6 +40,44 @@ void    destroyWindow()
 void    setup() {
     // TODO:
     // Initialize and setup game objects
+    playerX = 0;
+    playerY = WINDOW_HEIGHT / 2;
+    stickX = 0;
+    stickY = 0;
+}
+
+int Xpolarity = 1;
+int Ypolarity = 1;
+
+void    update() {
+    // playerX += 1;
+    // playerY += 1;
+
+    if (Xpolarity == 1) {
+        playerX += 1;
+        if (playerX >= WINDOW_WIDTH - 20)
+            Xpolarity = -1;
+    }
+    else
+    {
+        playerX -= 1;
+        if (playerX <= 0)
+            Xpolarity = 1;
+    }
+
+    if (Ypolarity == 1) {
+        playerY += 1;
+        if (playerY >= WINDOW_HEIGHT - 20)
+            Ypolarity = -1;
+    }
+    else
+    {
+        playerY -= 1;
+        if (playerY <= 0)
+            Ypolarity = 1;
+    }
+    //playerY = (playerY + (1 * polarity));
+    usleep(100);
 }
 
 void    processInput() {
@@ -52,6 +90,10 @@ void    processInput() {
         case SDL_KEYDOWN: {
             if (event.key.keysym.sym == SDLK_ESCAPE)
                 isGameRunning = FALSE;
+            else if (event.key.keysym.sym == SDLK_DOWN)
+                stickY += 20;
+            else if (event.key.keysym.sym == SDLK_UP)
+                stickY -= 20;
             break;
         }
     }
@@ -60,6 +102,14 @@ void    processInput() {
 void render() {
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
     SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+    SDL_Rect rect = {playerX, playerY, 20, 20};
+    SDL_RenderFillRect(renderer, &rect);
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 129, 255);
+    SDL_Rect stick = {stickX, stickY, 30, 60};
+    SDL_RenderFillRect(renderer, &stick);
 
     // TODO:
     // render all game objects for the current frame
@@ -72,7 +122,7 @@ int main() {
     setup();
     while (isGameRunning) {
         processInput();
-        //update();
+        update();
         render();
     }
     destroyWindow();
