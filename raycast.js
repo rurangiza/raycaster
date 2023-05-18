@@ -16,14 +16,14 @@ class Map {
     constructor() {
         this.grid = [
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-            [1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-            [1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         ];
@@ -281,18 +281,14 @@ function render3DProjectedWalls() {
 
         //var rayDistance = ray.distance;
         var rayDistance = ray.distance * Math.cos(ray.rayAngle - player.rotationAngle);
-        if (i == NUM_RAYS / 2)
-            console.log(`ray distance = ${rayDistance}`);
 
         // calculate the distance to the projection plane
         var distanceProjectionPlane = (WINDOW_WIDTH / 2) / Math.tan(FOV_ANGLE / 2);
         // projected wall height
         var wallStripHeight = (TILE_SIZE / rayDistance) * distanceProjectionPlane;
-        
-        if (rayDistance < 250)
-            fill("rgba(255, 255, 255, 1.0)");
-        else
-            fill("rgba(255, 255, 255, .8)");
+
+        var lighting = 1.0 - ((rayDistance / 1000) >= 1.0 ? 1.0: rayDistance / 1000);
+        fill(`rgba(255, 255, 255, ${lighting})`);
         noStroke();
         rect(
            i * WALL_STRIP_WIDTH,
