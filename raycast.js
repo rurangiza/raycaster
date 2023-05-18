@@ -18,7 +18,7 @@ class Map {
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+            [1, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
             [1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
@@ -27,7 +27,7 @@ class Map {
             [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
             [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         ];
-    }
+    } 
     hasWallAt(x, y) {
         if (x < 0 || x > WINDOW_WIDTH || y < 0 || y > WINDOW_HEIGHT) {
             return true;
@@ -41,7 +41,20 @@ class Map {
             for (var j = 0; j < MAP_NUM_COLS; j++) {
                 var tileX = j * TILE_SIZE;
                 var tileY = i * TILE_SIZE;
-                var tileColor = this.grid[i][j] == 1 ? "#222" : "#fff";
+
+                var tileColor;
+                switch (this.grid[i][j]) {
+                    case 1:
+                        tileColor = "#222"
+                        break ;
+                    case 0:
+                        tileColor = "#fff"
+                        break ;
+                    case 3:
+                        tileColor = "#22d";
+                        break ;
+                }
+
                 stroke("#222");
                 fill(tileColor);
                 rect(
@@ -58,11 +71,11 @@ class Map {
 class Player {
     constructor() {
         this.x = WINDOW_WIDTH / 2;
-        this.y = WINDOW_HEIGHT / 7;
+        this.y = WINDOW_HEIGHT / 3;
         this.radius = 4;
         this.turnDirection = 0; // -1 if left, +1 if right
         this.walkDirection = 0; // -1 if back, +1 if front
-        this.rotationAngle = Math.PI / 2;
+        this.rotationAngle = Math.PI;
         this.moveSpeed = 4.0;
         this.rotationSpeed = 3 * (Math.PI / 180);
     }
@@ -200,10 +213,17 @@ class Ray {
             : Number.MAX_VALUE;
 
         // only store the smallest of the distances
-        this.wallHitX = (horzHitDistance < vertHitDistance) ? horzWallHitX : vertWallHitX;
-        this.wallHitY = (horzHitDistance < vertHitDistance) ? horzWallHitY : vertWallHitY;
-        this.distance = (horzHitDistance < vertHitDistance) ? horzHitDistance : vertHitDistance;
-        this.wasHitVertical = (vertHitDistance < horzHitDistance);
+        if (vertHitDistance < horzHitDistance) {
+            this.wallHitX = vertWallHitX;
+            this.wallHitY = vertWallHitY;
+            this.distance = vertHitDistance;
+            this.wasHitVertical = true;
+        } else {
+            this.wallHitX = horzWallHitX;
+            this.wallHitY = horzWallHitY;
+            this.distance = horzHitDistance;
+            this.wasHitVertical = false;
+        }
     }
     render() {
         stroke("rgba(255, 255, 0, 1.0)");
@@ -287,8 +307,12 @@ function render3DProjectedWalls() {
         // projected wall height
         var wallStripHeight = (TILE_SIZE / rayDistance) * distanceProjectionPlane;
 
-        var lighting = 1.0 - ((rayDistance / 1000) >= 1.0 ? 1.0: rayDistance / 1000);
-        fill(`rgba(255, 255, 255, ${lighting})`);
+        var lighting = 1.0 - ((rayDistance / 900) >= .9 ? .9: rayDistance / 900);
+        //var lighting = 100 / rayDistance > 0.9 ? 0.9 : 100 / rayDistance;
+
+        var color = ray.wasHitVertical ? 255 : 200;
+
+        fill(`rgba(${color}, ${color}, ${color}, ${lighting})`);
         noStroke();
         rect(
            i * WALL_STRIP_WIDTH,
@@ -323,6 +347,10 @@ function update() {
 function draw() {
     clear("#212121");
     update();
+
+    // Draw a circle at the current mouse position
+    circle(mouseX, mouseY, 50);
+
 
     render3DProjectedWalls();
     
