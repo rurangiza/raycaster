@@ -1,16 +1,5 @@
 #include "raycaster.h"
 
-#define FALSE   0
-#define TRUE    1
-
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 600
-
-SDL_Window *window = NULL;
-SDL_Renderer *renderer = NULL;
-int isGameRunning = FALSE;
-
-
 int initWindow() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         fprintf(stderr, "Error initializing SDL.\n");
@@ -28,9 +17,10 @@ int initWindow() {
         fprintf(stderr, "Error creating SDL window.\n");
         return FALSE;
     }
-    render = SDL_CreateRenderer(
+    renderer = SDL_CreateRenderer(
         window,                     // window
-        -1                          // driver (-1 means default driver)
+        -1,                         // driver (-1 means default driver)
+        0
     );
     if (!renderer) {
         fprintf(stderr, "Error creating SDL renderer.\n");
@@ -47,13 +37,43 @@ void    destroyWindow()
     SDL_Quit();
 }
 
+void    setup() {
+    // TODO:
+    // Initialize and setup game objects
+}
+
+void    processInput() {
+    SDL_Event event;
+    SDL_PollEvent(&event);
+    switch (event.type) {
+        case SDL_QUIT:
+            isGameRunning = FALSE;
+            break ;
+        case SDL_KEYDOWN: {
+            if (event.key.keysym.sym == SDLK_ESCAPE)
+                isGameRunning = FALSE;
+            break;
+        }
+    }
+}
+
+void render() {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    // TODO:
+    // render all game objects for the current frame
+
+    SDL_RenderPresent(renderer);
+}
+
 int main() {
     isGameRunning = initWindow();
-    //setup();
+    setup();
     while (isGameRunning) {
-        //processInput();
+        processInput();
         //update();
-        //render();
+        render();
     }
     destroyWindow();
     return 0;
