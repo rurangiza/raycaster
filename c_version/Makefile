@@ -5,10 +5,10 @@ SRC_FOLDER	=	./src
 
 # FILES
 SRC			=	$(SRC_FOLDER)/main.c \
-				$(SRC_FOLDER)/start_game.c \
+				$(SRC_FOLDER)/init.c \
 				$(SRC_FOLDER)/update.c \
 				$(SRC_FOLDER)/render.c \
-				$(SRC_FOLDER)/end_game.c \
+				$(SRC_FOLDER)/destroy.c \
 #$(SRC_FOLDER)/*.c
 
 CC			=	gcc -std=c99
