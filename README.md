@@ -30,7 +30,6 @@ int main() {
     while (isGameRunning) {
         // Handle user input and update the game state accordingly.
         processInput();
-        // Update the game state based on the input received
         update();
         // Render the game state to the screen
         render();
