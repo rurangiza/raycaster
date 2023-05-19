@@ -18,7 +18,8 @@ SANATIZE	=	-fsanitize=address
 ifeq ($(USER), lupin)
 	SDL_LIB = -I/opt/homebrew/Cellar/sdl2/2.26.5/include -L/opt/homebrew/Cellar/sdl2/2.26.5/lib -lSDL2
 else ifeq ($(USER), arurangi)
-	SDL_LIB = /opt/homebrew/
+	SDL_LIB = -I/Users/arurangi/.brew/Cellar/sdl2/2.26.5/include -L/Users/arurangi/.brew/Cellar/sdl2/2.26.5/lib/ -lSDL2
+endif
 
 # COLORS
 CGREEN		=	\033[0;32m
