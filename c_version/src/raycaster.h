@@ -14,11 +14,17 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
-SDL_Window *window = NULL;
-SDL_Renderer *renderer = NULL;
-int isGameRunning = FALSE;
-int playerX, playerY;
-int stickX, stickY;
+extern SDL_Window *window;
+extern SDL_Renderer *renderer;
+extern int isGameRunning;
+extern int playerX, playerY;
+extern int stickX, stickY;
 
+int		initWindow(void);
+void	setup(void);
+void	destroyWindow(void);
+void	render(void);
+void	update(void);
+void	processInput(void);
 
 #endif

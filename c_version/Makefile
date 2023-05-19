@@ -4,7 +4,12 @@ NAME		=	raycast
 SRC_FOLDER	=	./src
 
 # FILES
-SRC			=	$(SRC_FOLDER)/*.c
+SRC			=	$(SRC_FOLDER)/main.c \
+				$(SRC_FOLDER)/start_game.c \
+				$(SRC_FOLDER)/update.c \
+				$(SRC_FOLDER)/render.c \
+				$(SRC_FOLDER)/end_game.c \
+#$(SRC_FOLDER)/*.c
 
 CC			=	gcc -std=c99
 FLAGS		=	-Wall -Werror -Wextra
