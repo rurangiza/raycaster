@@ -83,22 +83,6 @@ int initWindow() {
     return TRUE;
 }
 ```
-## Draw something on the window
-```C
-void render() {
-    // Set background color to black
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    SDL_RenderClear(renderer);
-
-    // Draw player rectangle in yellow
-    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
-    SDL_Rect rect = {playerX, playerY, 20, 20};
-    SDL_RenderFillRect(renderer, &rect);
-
-    // Show the rendered frame
-    SDL_RenderPresent(renderer);
-}
-```
 ## Take user input
 ```C
 void    processInput() {
@@ -125,6 +109,22 @@ void    processInput() {
             break;
         }
     }
+}
+```
+## Draw something on the window
+```C
+void render() {
+    // Set background color to black
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
+
+    // Draw player rectangle in yellow
+    SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+    SDL_Rect rect = {playerX, playerY, 20, 20};
+    SDL_RenderFillRect(renderer, &rect);
+
+    // Show the rendered frame
+    SDL_RenderPresent(renderer);
 }
 ```
 
