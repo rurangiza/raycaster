@@ -1,4 +1,5 @@
 NAME		=	raycast
+USER		:=	$(shell whoami)
 
 # FOLDERS
 SRC_FOLDER	=	./src
@@ -14,7 +15,10 @@ SRC			=	$(SRC_FOLDER)/main.c \
 CC			=	gcc -std=c99
 FLAGS		=	-Wall -Werror -Wextra
 SANATIZE	=	-fsanitize=address
-SDL_LIB		=	-I/opt/homebrew/Cellar/sdl2/2.26.5/include -L/opt/homebrew/Cellar/sdl2/2.26.5/lib -lSDL2
+ifeq ($(USER), lupin)
+	SDL_LIB = -I/opt/homebrew/Cellar/sdl2/2.26.5/include -L/opt/homebrew/Cellar/sdl2/2.26.5/lib -lSDL2
+else ifeq ($(USER), arurangi)
+	SDL_LIB = /opt/homebrew/
 
 # COLORS
 CGREEN		=	\033[0;32m
