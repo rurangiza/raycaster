@@ -1,4 +1,3 @@
-
 #include "raycaster.h"
 
 SDL_Window *window = NULL;
@@ -34,10 +33,13 @@ int initWindow() {
 }
 
 void    setup() {
-    // TODO:
-    // Initialize and setup game objects
-    playerX = 0;
-    playerY = WINDOW_HEIGHT / 2;
-    stickX = 0;
-    stickY = 0;
+    Player.x = WINDOW_WIDTH / 2;
+    Player.y = WINDOW_HEIGHT / 2;
+    Player.width = 5;
+    Player.height = 5;
+    Player.turnDirection = 0;
+    Player.walkDirection = 0;
+    Player.rotationAngle = PI / 2;
+    Player.walkSpeed = 100; // pixels per second
+    Player.turnSpeed = 45 * (PI / 180);
 }

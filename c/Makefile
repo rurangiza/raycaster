@@ -13,8 +13,8 @@ SRC			=	$(SRC_FOLDER)/main.c \
 #$(SRC_FOLDER)/*.c
 
 CC			=	gcc -std=c99
-FLAGS		=	-Wall -Werror -Wextra
-SANATIZE	=	-fsanitize=address
+FLAGS		=	-Wall -Werror -Wextra $(SANATIZE)
+SANATIZE	=	-g -fsanitize=address
 ifeq ($(USER), lupin)
 	SDL_LIB = -I/opt/homebrew/Cellar/sdl2/2.26.5/include -L/opt/homebrew/Cellar/sdl2/2.26.5/lib -lSDL2
 else ifeq ($(USER), arurangi)
@@ -31,7 +31,7 @@ CRESET		=	\033[0m
 
 build:
 	@echo "$(CBLUE)> building..$(CRESET)"
-	$(CC) $(SRC) -o $(NAME) $(SDL_LIB);
+	$(CC) $(SRC) $(FLAGS) -o $(NAME) $(SDL_LIB);
 
 run:
 	@echo "$(CGREEN)> running..$(CRESET)"

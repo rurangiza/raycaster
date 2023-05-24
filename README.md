@@ -5,10 +5,14 @@ Playground for creating a raycasting engine
 I'll use [SDL](https://www.libsdl.org/) (Simple DirectMedia Layer). Which is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D
 
 How to install:
-1. Download brew
-2. Install the library using brew: `brew install sdl2`
-3. Add `#include <SDL2/SDL.h>` in your header file
+1. Download **brew** with this command `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+2. Install the **SDL library** using brew: `brew install sdl2`
+3. Add this header file `#include <SDL2/SDL.h>`
 4. Compile like this: `gcc test.c -o test -lSDL2`
+    - gcc is the compiler
+    - test.c is the source file with all the code
+    - -o test allows to rename the executable
+    - -lSDL2 allows to access all functions defined by SDL
 
 N.B: if you get this error message :  **ld: library not found for -lSDL2**, it means that the [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is unable to find the SDL2 library. Here are the steps to specify where the library is:
 1. `brew list sdl2` to show the installation path of the library
