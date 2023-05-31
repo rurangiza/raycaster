@@ -17,7 +17,6 @@ How to install:
 [^1]:
     N.B: if you get this error message :  **ld: library not found for -lSDL2**, it means that the [linker](https://en.wikipedia.org/wiki/Linker_(computing)) is unable to find the SDL2 library. Here are the steps to specify where the library is:
     1. `brew list sdl2` to show the installation path of the library
-    2. Look for two paths leading to folders:
     3. Update your compilation command: -I`gcc -o test test.c /path_to_library/lib` -L`/path_to_header_files/include` -lSDL2
 
 ## Core Game Structure
