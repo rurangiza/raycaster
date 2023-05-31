@@ -1,7 +1,12 @@
 # Writing a Raycasting Engine
 Playground for creating a raycasting engine
 
-## How to display things on the screen
+
+
+## Basics
+<details>
+<summary>Setup SDL (Graphic Library)</summary>
+
 I'll use [SDL](https://www.libsdl.org/) (Simple DirectMedia Layer). Which is a cross-platform development library designed to provide low level access to audio, keyboard, mouse, joystick, and graphics hardware via OpenGL and Direct3D
 
 How to install:
@@ -19,7 +24,11 @@ How to install:
     1. `brew list sdl2` to show the installation path of the library
     3. Update your compilation command: -I`gcc -o test test.c /path_to_library/lib` -L`/path_to_header_files/include` -lSDL2
 
-## Core Game Structure
+</details>
+
+<details>
+<summary>Game Structure</summary>
+
 ```C
 int main() {
     // Initialize the game window and set a boolean flag to control the main game loop
@@ -42,8 +51,12 @@ int main() {
     return 0;
 }
 ```
+</details>
 
-## Create a window (the canvas)
+
+<details>
+<summary>Create a window (the canvas)</summary>
+
 ```C
 SDL_Window *window = NULL;
 
@@ -84,7 +97,14 @@ int initWindow() {
     return TRUE;
 }
 ```
-## Take user input
+</details>
+
+
+</details>
+
+<details>
+<summary>Take user input</summary>
+
 ```C
 void    processInput() {
     SDL_Event event;
@@ -112,7 +132,12 @@ void    processInput() {
     }
 }
 ```
-## Draw something on the window
+</details>
+
+
+<details>
+<summary>Draw something on the window</summary>
+
 ```C
 void render() {
     // Set background color to black
@@ -128,6 +153,8 @@ void render() {
     SDL_RenderPresent(renderer);
 }
 ```
+</details>
+
 
 # Useful Links
 - [Ray casting](https://en.wikipedia.org/wiki/Ray_casting) (Wiki)
