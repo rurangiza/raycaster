@@ -161,3 +161,4 @@ void render() {
 - [Raycasting Engine Programming with C](https://pikuma.com/courses/raycasting-engine-tutorial-algorithm-javascript) (Course)
 - [Game Engine Black Book: Wolfenstein 3D](https://www.amazon.com/Game-Engine-Black-Book-Wolfenstein/dp/1539692876) (Book)
 - [Running C games in the browser](https://medium.com/swlh/i-made-a-game-in-c-run-in-a-web-browser-and-so-can-you-2911b9fe2368)
+- [Tutorial by Vinicius Reif Biavatti](https://github.com/vinibiavatti1/RayCastingTutorial/wiki)
