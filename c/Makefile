@@ -12,9 +12,11 @@ SRC			=	$(SRC_FOLDER)/main.c \
 				$(SRC_FOLDER)/destroy.c \
 #$(SRC_FOLDER)/*.c
 
-CC			=	gcc -std=c99
-FLAGS		=	-Wall -Werror -Wextra $(SANATIZE)
-SANATIZE	=	-g -fsanitize=address
+CC			=	gcc #-std=c99
+FLAGS		=	-Wall -Werror -Wextra
+DEBUG		+=	-g -fsanitize=address
+FLAGS		+=	-I./includes
+
 ifeq ($(USER), lupin)
 	SDL_LIB = -I/opt/homebrew/Cellar/sdl2/2.26.5/include -L/opt/homebrew/Cellar/sdl2/2.26.5/lib -lSDL2
 else ifeq ($(USER), arurangi)

@@ -21,8 +21,34 @@ void    update() {
 
     ticksLastFrame = SDL_GetTicks();
 
-    playerX += PLAYER_SPEED * deltaTime;
-    playerY += PLAYER_SPEED * deltaTime;
+    movePlayer(deltaTime);
+
+    // playerX += PLAYER_SPEED * deltaTime;
+    // playerY += PLAYER_SPEED * deltaTime;
+}
+
+void    movePlayer(float deltaTime)
+{
+    SDL_Event event;
+    SDL_PollEvent(&event);
+    switch (event.type) {
+        case SDL_KEYDOWN: 
+            switch (event.key.keysym.sym) {
+                case SDLK_DOWN:
+                    player.y += PLAYER_SPEED * deltaTime;
+                    break ;
+                case SDLK_UP:
+                    player.y -= PLAYER_SPEED * deltaTime;
+                    break ;
+                case SDLK_LEFT:
+                    player.x -= PLAYER_SPEED * deltaTime;
+                    break ;
+                case SDLK_RIGHT:
+                    player.x += PLAYER_SPEED * deltaTime;
+                    break ;
+            break;
+        }
+    }
 }
 
 void    processInput() {
@@ -38,20 +64,22 @@ void    processInput() {
                     isGameRunning = FALSE;
                     break ;
                 case SDLK_DOWN:
-                    playerY += PLAYER_SPEED * deltaTime;
+                    player.walkDirection = -1;
                     break ;
                 case SDLK_UP:
-                    playerY -= PLAYER_SPEED * deltaTime;
+                    player.walkDirection = +1;
                     break ;
                 case SDLK_LEFT:
-                    playerX -= PLAYER_SPEED * deltaTime;
-                    printf("playerX = %d\n", playerX);
+                    player.turnDirection = -1;
                     break ;
                 case SDLK_RIGHT:
-                    playerX += PLAYER_SPEED * deltaTime;
-                    printf("playerX = %d\n", playerX);
+                    player.turnDirection = +1;
                     break ;
-            break;
+            }
+        case SDL_KEYUP: {
+            // switch () {
+
+            // }
         }
     }
 }

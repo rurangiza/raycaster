@@ -8,9 +8,9 @@ int initWindow() {
         return FALSE;
     }
     window = SDL_CreateWindow(
-        NULL,                       // title
-        SDL_WINDOWPOS_CENTERED,     // x position
-        SDL_WINDOWPOS_CENTERED,     // y position
+        "Adventura 3D",								// title
+        SDL_WINDOWPOS_CENTERED,				// x position
+        SDL_WINDOWPOS_CENTERED,				// y position
         WINDOW_WIDTH,
         WINDOW_HEIGHT,
         SDL_WINDOW_BORDERLESS
@@ -20,8 +20,8 @@ int initWindow() {
         return FALSE;
     }
     renderer = SDL_CreateRenderer(
-        window,                     // window
-        -1,                         // driver (-1 means default driver)
+        window,								// window
+        -1,									// driver (-1 means default driver)
         0
     );
     if (!renderer) {
@@ -33,13 +33,13 @@ int initWindow() {
 }
 
 void    setup() {
-    Player.x = WINDOW_WIDTH / 2;
-    Player.y = WINDOW_HEIGHT / 2;
-    Player.width = 5;
-    Player.height = 5;
-    Player.turnDirection = 0;
-    Player.walkDirection = 0;
-    Player.rotationAngle = PI / 2;
-    Player.walkSpeed = 100; // pixels per second
-    Player.turnSpeed = 45 * (PI / 180);
+    player.x = WINDOW_WIDTH / 2;
+    player.y = WINDOW_HEIGHT / 2;
+    player.width = 1;
+    player.height = 1;
+    player.turnDirection = 0;
+    player.walkDirection = 0;
+    player.rotationAngle = PI / 2;
+    player.walkSpeed = 100;					// pixels per second
+    player.turnSpeed = 45 * (PI / 180);
 }
